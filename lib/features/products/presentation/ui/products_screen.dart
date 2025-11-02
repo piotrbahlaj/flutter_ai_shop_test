@@ -4,6 +4,8 @@ import 'package:flutter_ai_shop_test/features/products/presentation/ui/products_
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
 
+  static const path = '/products';
+
   @override
   Widget build(BuildContext context) {
     return const ProductsView();

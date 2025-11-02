@@ -4,6 +4,8 @@ import 'package:flutter_ai_shop_test/features/order/presentation/ui/order_view.d
 class OrderScreen extends StatelessWidget {
   const OrderScreen({super.key});
 
+  static const path = '/order';
+
   @override
   Widget build(BuildContext context) {
     return const OrderView();

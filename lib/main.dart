@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_shop_test/config/di/di_container.dart';
-import 'package:flutter_ai_shop_test/features/products/presentation/ui/products_screen.dart';
+import 'package:flutter_ai_shop_test/config/routes/app_router.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
@@ -15,9 +15,9 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp.router(
+      routerConfig: appRouter,
       debugShowCheckedModeBanner: false,
-      home: Scaffold(body: ProductsScreen()),
     );
   }
 }
