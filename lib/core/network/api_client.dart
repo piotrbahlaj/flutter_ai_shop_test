@@ -4,20 +4,12 @@ import 'package:flutter_ai_shop_test/core/constants/constants.dart';
 import 'package:flutter_ai_shop_test/core/network/loggin_interceptor.dart';
 
 class ApiClient {
-  EnvironmentConfigInterface environmentConfigInterface;
-  ApiClient({required this.environmentConfigInterface}) {
-    dio = _createDio();
-  }
-  late Dio dio;
-  Dio _createDio() {
+  final EnvironmentConfigInterface env;
+  ApiClient(this.env);
+
+  Dio _baseDio() {
     final dio = Dio(
       BaseOptions(
-        baseUrl: environmentConfigInterface.baseUrl,
-        headers: {
-          Constants.headerAuthorization:
-              'Bearer ${environmentConfigInterface.apiKey}',
-          Constants.headerContentType: Constants.contentTypeJson,
-        },
         connectTimeout: const Duration(
           seconds: Constants.defaultConnectionTimeout,
         ),
@@ -26,9 +18,26 @@ class ApiClient {
         ),
       ),
     );
-
     dio.interceptors.add(AppLoggingInterceptor());
-
     return dio;
+  }
+
+  Dio openAiDio() {
+    return _baseDio()
+      ..options = BaseOptions(
+        baseUrl: env.openAiBaseUrl,
+        headers: {
+          Constants.headerAuthorization: 'Bearer ${env.apiKey}',
+          Constants.headerContentType: Constants.contentTypeJson,
+        },
+      );
+  }
+
+  Dio dummyJsonDio() {
+    return _baseDio()
+      ..options = BaseOptions(
+        baseUrl: env.dummyJsonBaseUrl,
+        headers: {Constants.headerContentType: Constants.contentTypeJson},
+      );
   }
 }
