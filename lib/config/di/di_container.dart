@@ -5,6 +5,8 @@ import 'package:flutter_ai_shop_test/core/network/api_client.dart';
 import 'package:flutter_ai_shop_test/features/products/data/repositories/products_repository_impl.dart';
 import 'package:flutter_ai_shop_test/features/products/data/service/products_service.dart';
 import 'package:flutter_ai_shop_test/features/products/domain/repositories/products_repository.dart';
+import 'package:flutter_ai_shop_test/features/products/domain/usecases/get_products_usecases.dart';
+import 'package:flutter_ai_shop_test/features/products/presentation/bloc/products_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../config/environment/environment_config.dart';
@@ -32,11 +34,18 @@ void setupDependencies() {
 
   //Services
   getIt.registerFactory<ProductsService>(
-    () =>
-        ProductsService(getIt<ApiClient>(instanceName: Constants.dummyJsonDio)),
+    () => ProductsService(getIt<ApiClient>()),
   );
-  // Repositories
+  //Repositories
   getIt.registerLazySingleton<ProductsRepository>(
     () => ProductsRepositoryImpl(getIt<ProductsService>()),
+  );
+
+  //UseCases
+  getIt.registerLazySingleton(() => GetProductsUseCase(getIt()));
+
+  //Blocs
+  getIt.registerFactory<ProductsBloc>(
+    () => ProductsBloc(getIt<GetProductsUseCase>()),
   );
 }

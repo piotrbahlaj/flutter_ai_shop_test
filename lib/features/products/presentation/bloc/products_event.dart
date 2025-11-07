@@ -1,4 +1,6 @@
 part of 'products_bloc.dart';
 
-@immutable
-sealed class ProductsEvent {}
+@freezed
+class ProductsEvent with _$ProductsEvent {
+  const factory ProductsEvent.fetchProducts() = FetchProductsEvent;
+}
