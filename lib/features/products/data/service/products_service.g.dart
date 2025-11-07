@@ -20,27 +20,25 @@ class _ProductsService implements ProductsService {
   final ParseErrorLogger? errorLogger;
 
   @override
-  Future<List<Product>> getProducts() async {
+  Future<ProductsResponse> getProducts() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
-    final _options = _setStreamType<List<Product>>(
+    final _options = _setStreamType<ProductsResponse>(
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            '/products',
+            '/products?limit=50',
             queryParameters: queryParameters,
             data: _data,
           )
           .copyWith(baseUrl: _combineBaseUrls(_dio.options.baseUrl, baseUrl)),
     );
-    final _result = await _dio.fetch<List<dynamic>>(_options);
-    late List<Product> _value;
+    final _result = await _dio.fetch<Map<String, dynamic>>(_options);
+    late ProductsResponse _value;
     try {
-      _value = _result.data!
-          .map((dynamic i) => Product.fromJson(i as Map<String, dynamic>))
-          .toList();
+      _value = ProductsResponse.fromJson(_result.data!);
     } on Object catch (e, s) {
       errorLogger?.logError(e, s, _options);
       rethrow;

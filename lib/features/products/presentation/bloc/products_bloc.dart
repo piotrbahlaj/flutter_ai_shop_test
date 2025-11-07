@@ -1,5 +1,5 @@
 import 'package:flutter_ai_shop_test/core/utils/result.dart';
-import 'package:flutter_ai_shop_test/features/products/data/models/product_model.dart';
+import 'package:flutter_ai_shop_test/features/products/data/models/product/product_model.dart';
 import 'package:flutter_ai_shop_test/features/products/domain/usecases/get_products_usecases.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -10,7 +10,7 @@ part 'products_state.dart';
 
 class ProductsBloc extends Bloc<ProductsEvent, ProductsState> {
   final GetProductsUseCase _getProductsUseCase;
-  ProductsBloc(this._getProductsUseCase) : super(ProductsState.initial()) {
+  ProductsBloc(this._getProductsUseCase) : super(ProductsState.loading()) {
     on<FetchProductsEvent>(_onFetchProductsEvent);
   }
 

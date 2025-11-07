@@ -1,4 +1,5 @@
-abstract class Constants {
+class Constants {
+  Constants._();
   // API Client
   static const headerAuthorization = 'Authorization';
   static const headerContentType = 'Content-Type';
@@ -7,7 +8,7 @@ abstract class Constants {
   static const dummyJsonDio = 'dummyJsonDio';
 
   // API endpoints
-  static const productsEndpoint = '/products';
+  static const productsEndpoint = '/products?limit=50';
 
   // Durations
   static const snackbarDuration = 3;
@@ -18,4 +19,10 @@ abstract class Constants {
   static const productsFailure = 'Failed to load products';
   static const aiFailure = 'AI request failed';
   static const unknownFailure = 'An unknown error occurred';
+  static const noProductsError = 'No products found';
+
+  // Miscallaneous
+  static const retryButtonText = 'Retry';
+  static const searchBarHintText = 'Search products';
+  static const iconSizeLarge = 64.0;
 }

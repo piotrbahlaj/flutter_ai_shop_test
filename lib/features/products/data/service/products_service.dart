@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_ai_shop_test/core/constants/constants.dart';
-import 'package:flutter_ai_shop_test/features/products/data/models/product_model.dart';
+import 'package:flutter_ai_shop_test/features/products/data/models/product_response/product_response_model.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../../../core/network/api_client.dart';
@@ -13,5 +13,5 @@ abstract class ProductsService {
       _ProductsService(apiClient.dummyJsonDio());
 
   @GET(Constants.productsEndpoint)
-  Future<List<Product>> getProducts();
+  Future<ProductsResponse> getProducts();
 }
