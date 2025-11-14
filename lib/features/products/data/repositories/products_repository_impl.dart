@@ -16,12 +16,10 @@ class ProductsRepositoryImpl implements ProductsRepository {
       final response = await _service.getProducts();
       return Result.success(response.products);
     } on DioException catch (e) {
-      print('DioException: $e');
       return Result.failure(
         mapDioExceptionToFailure(e, source: FailureSource.products),
       );
-    } on Exception catch (e) {
-      print('General Exception: $e');
+    } on Exception catch (_) {
       return Result.failure(const UnknownFailure());
     }
   }
