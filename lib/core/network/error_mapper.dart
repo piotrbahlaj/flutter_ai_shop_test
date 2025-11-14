@@ -2,11 +2,11 @@ import 'package:dio/dio.dart';
 
 import '../error/failures.dart';
 
-enum FailureSource { products, ai }
+enum FailureSource { products, ai, unknown }
 
 Failure mapDioExceptionToFailure(
   DioException e, {
-  required FailureSource source,
+  FailureSource source = FailureSource.unknown,
 }) {
   if (e.type == DioExceptionType.connectionError ||
       e.type == DioExceptionType.connectionTimeout ||
@@ -16,12 +16,11 @@ Failure mapDioExceptionToFailure(
   }
 
   if (e.type == DioExceptionType.badResponse) {
-    switch (source) {
-      case FailureSource.ai:
-        return const AiFailure();
-      case FailureSource.products:
-        return const ProductsFailure();
-    }
+    return switch (source) {
+      FailureSource.ai => const AiFailure(),
+      FailureSource.products => const ProductsFailure(),
+      _ => const UnknownFailure(),
+    };
   }
 
   return const UnknownFailure();

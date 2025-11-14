@@ -2,6 +2,8 @@ import 'package:flutter_ai_shop_test/core/error/failures.dart';
 
 abstract class Result<T> {
   const Result();
+  factory Result.success(T data) = Success<T>;
+  factory Result.failure(Failure failure) = Error<T>;
 }
 
 class Success<T> extends Result<T> {
