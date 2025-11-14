@@ -25,4 +25,6 @@ class Constants {
   static const retryButtonText = 'Retry';
   static const searchBarHintText = 'Search products';
   static const iconSizeLarge = 64.0;
+  static const products = 'Products';
+  static const order = 'Order';
 }
