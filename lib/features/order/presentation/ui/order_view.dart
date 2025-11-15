@@ -35,19 +35,8 @@ class OrderView extends HookWidget {
             child: BlocConsumer<OrderBloc, OrderState>(
               listener: (context, state) {
                 state.maybeWhen(
-                  success: (products) {
-                    final notFoundItems = products
-                        .where((product) => !product.isFound)
-                        .toList();
-                    if (notFoundItems.isNotEmpty) {
-                      final titles = notFoundItems
-                          .map((product) => product.title)
-                          .join(', ');
-                      context.showSnackbar(
-                        message: '${Constants.notFoundItemAlert} $titles',
-                      );
-                    }
-                  },
+                  success: (products) =>
+                      _onItemNotFoundHandler(context, products),
                   orElse: () {},
                 );
               },
@@ -97,5 +86,16 @@ void _onOrderSubmittedHandler(
   final input = controller.text.trim();
   if (input.isNotEmpty) {
     orderBloc.add(OrderEvent.submit(input));
+  }
+}
+
+void _onItemNotFoundHandler(
+  BuildContext context,
+  List<OrderedProduct> products,
+) {
+  final notFoundItems = products.where((product) => !product.isFound).toList();
+  if (notFoundItems.isNotEmpty) {
+    final items = notFoundItems.map((product) => product.title).join(', ');
+    context.showSnackbar(message: '${Constants.notFoundItemAlert} $items');
   }
 }
