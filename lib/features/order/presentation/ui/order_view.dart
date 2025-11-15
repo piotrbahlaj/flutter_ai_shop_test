@@ -29,7 +29,8 @@ class OrderView extends HookWidget {
           OrderTitle(),
           OrderTextField(controller: controller),
           OrderButton(
-            onPressed: () => _onOrderSubmittedHandler(controller, orderBloc),
+            onPressed: () =>
+                _onOrderSubmittedHandler(context, controller, orderBloc),
           ),
           Expanded(
             child: BlocConsumer<OrderBloc, OrderState>(
@@ -48,8 +49,11 @@ class OrderView extends HookWidget {
                   success: (products) => _SuccessBody(products: products),
                   error: (msg) => ErrorBody(
                     message: msg,
-                    onPressed: () =>
-                        _onOrderSubmittedHandler(controller, orderBloc),
+                    onPressed: () => _onOrderSubmittedHandler(
+                      context,
+                      controller,
+                      orderBloc,
+                    ),
                   ),
                 );
               },
@@ -80,12 +84,15 @@ class _SuccessBody extends StatelessWidget {
 }
 
 void _onOrderSubmittedHandler(
+  BuildContext context,
   TextEditingController controller,
   OrderBloc orderBloc,
 ) {
   final input = controller.text.trim();
   if (input.isNotEmpty) {
     orderBloc.add(OrderEvent.submit(input));
+  } else {
+    context.showSnackbar(message: Constants.emptyOrderAlert);
   }
 }
 

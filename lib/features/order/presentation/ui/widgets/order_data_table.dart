@@ -24,10 +24,30 @@ class OrderDataTable extends StatelessWidget {
           DataTable(
             headingRowColor: WidgetStateProperty.all(AppColors.backgroundGray),
             columns: const [
-              DataColumn(label: Text(Constants.dataTableColumnProduct)),
-              DataColumn(label: Text(Constants.dataTableColumnPrice)),
-              DataColumn(label: Text(Constants.dataTableColumnQuantity)),
-              DataColumn(label: Text(Constants.dataTableColumnSum)),
+              DataColumn(
+                label: Text(
+                  Constants.dataTableColumnProduct,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  Constants.dataTableColumnPrice,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  Constants.dataTableColumnQuantity,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
+              DataColumn(
+                label: Text(
+                  Constants.dataTableColumnSum,
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
             ],
             rows: products.map((product) {
               final sumPrice = (product.price ?? 0) * product.quantity;

@@ -12,11 +12,14 @@ class OrderButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        backgroundColor: AppColors.orderButtonBackground,
+        foregroundColor: AppColors.primaryBlack,
         minimumSize: const Size(double.infinity, Constants.buttonDefaultHeight),
         padding: AppSpacing.padV(AppSpacing.m),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSpacing.m),
         ),
+        elevation: 6,
       ),
       child: Text(
         Constants.order,

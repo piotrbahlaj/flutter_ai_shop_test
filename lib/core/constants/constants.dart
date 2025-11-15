@@ -24,6 +24,7 @@ class Constants {
   static const emptyCatalogError = 'Product catalog is empty.';
   static const notFoundItemAlert =
       'Some of the items that you ordered could not be found: ';
+  static const emptyOrderAlert = 'Please enter your order before submitting.';
 
   // Miscallaneous
   static const retryButtonText = 'Retry';
