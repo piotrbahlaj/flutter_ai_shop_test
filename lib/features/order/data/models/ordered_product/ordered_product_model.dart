@@ -8,15 +8,13 @@ abstract class OrderedProduct with _$OrderedProduct {
   const OrderedProduct._();
 
   const factory OrderedProduct({
-    required int id,
+    int? id,
     required String title,
-    required double price,
+    double? price,
     required int quantity,
     required bool isFound,
   }) = _OrderedProduct;
 
   factory OrderedProduct.fromJson(Map<String, dynamic> json) =>
       _$OrderedProductFromJson(json);
-
-  double get total => price * quantity;
 }

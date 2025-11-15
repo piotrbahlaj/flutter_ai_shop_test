@@ -12,7 +12,7 @@ class Constants {
   static const geminiEndpoint = '/models/gemini-2.5-flash:generateContent';
 
   // Durations
-  static const snackbarDuration = 3;
+  static const snackbarDuration = 5;
   static const defaultConnectionTimeout = 10;
 
   // Failure messages
@@ -22,6 +22,8 @@ class Constants {
   static const unknownFailure = 'An unknown error occurred';
   static const noProductsError = 'No products found';
   static const emptyCatalogError = 'Product catalog is empty.';
+  static const notFoundItemAlert =
+      'Some of the items that you ordered could not be found: ';
 
   // Miscallaneous
   static const retryButtonText = 'Retry';

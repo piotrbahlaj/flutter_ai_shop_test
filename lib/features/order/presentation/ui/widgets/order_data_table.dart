@@ -30,13 +30,34 @@ class OrderDataTable extends StatelessWidget {
               DataColumn(label: Text(Constants.dataTableColumnSum)),
             ],
             rows: products.map((product) {
-              final sumPrice = product.price * product.quantity;
+              final sumPrice = (product.price ?? 0) * product.quantity;
               return DataRow(
                 cells: [
-                  DataCell(Text(product.title)),
-                  DataCell(Text('\$${product.price.toStringAsFixed(2)}')),
-                  DataCell(Text(product.quantity.toString())),
-                  DataCell(Text('\$${sumPrice.toStringAsFixed(2)}')),
+                  DataCell(
+                    Text(
+                      product.title,
+                      style: TextStyle(
+                        color: product.isFound ? null : AppColors.errorRed,
+                      ),
+                    ),
+                  ),
+                  DataCell(
+                    Text(
+                      product.isFound
+                          ? '\$${product.price!.toStringAsFixed(2)}'
+                          : '-',
+                    ),
+                  ),
+                  DataCell(
+                    Text(product.isFound ? product.quantity.toString() : '-'),
+                  ),
+                  DataCell(
+                    Text(
+                      product.isFound
+                          ? '\$${sumPrice.toStringAsFixed(2)}'
+                          : '-',
+                    ),
+                  ),
                 ],
               );
             }).toList(),

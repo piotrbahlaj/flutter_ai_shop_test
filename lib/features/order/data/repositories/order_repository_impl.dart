@@ -55,6 +55,13 @@ class OrderRepositoryImpl implements OrderRepository {
     final systemPrompt =
         """
         You are an order parser. Match items from the user's order to the catalog.
+        Return a JSON array of items. Each item must have the following keys:
+        - id: number (if found, otherwise null)
+        - title: string (use the user's requested text if not found)
+        - price: number (if found, otherwise null)
+        - quantity: number
+        - isFound: boolean
+        Always use the exact keys above. Do not rename them.
 
         Rules:
         - Match titles closely (case-insensitive).

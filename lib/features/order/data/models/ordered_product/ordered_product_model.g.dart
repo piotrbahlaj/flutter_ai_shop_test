@@ -8,9 +8,9 @@ part of 'ordered_product_model.dart';
 
 _OrderedProduct _$OrderedProductFromJson(Map<String, dynamic> json) =>
     _OrderedProduct(
-      id: (json['id'] as num).toInt(),
+      id: (json['id'] as num?)?.toInt(),
       title: json['title'] as String,
-      price: (json['price'] as num).toDouble(),
+      price: (json['price'] as num?)?.toDouble(),
       quantity: (json['quantity'] as num).toInt(),
       isFound: json['isFound'] as bool,
     );

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_ai_shop_test/core/constants/constants.dart';
+import 'package:flutter_ai_shop_test/core/extensions/context_extensions.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
 import 'package:flutter_ai_shop_test/features/order/data/models/ordered_product/ordered_product_model.dart';
 import 'package:flutter_ai_shop_test/features/order/presentation/bloc/order_bloc.dart';
@@ -30,7 +32,25 @@ class OrderView extends HookWidget {
             onPressed: () => _onOrderSubmittedHandler(controller, orderBloc),
           ),
           Expanded(
-            child: BlocBuilder<OrderBloc, OrderState>(
+            child: BlocConsumer<OrderBloc, OrderState>(
+              listener: (context, state) {
+                state.maybeWhen(
+                  success: (products) {
+                    final notFoundItems = products
+                        .where((product) => !product.isFound)
+                        .toList();
+                    if (notFoundItems.isNotEmpty) {
+                      final titles = notFoundItems
+                          .map((product) => product.title)
+                          .join(', ');
+                      context.showSnackbar(
+                        message: '${Constants.notFoundItemAlert} $titles',
+                      );
+                    }
+                  },
+                  orElse: () {},
+                );
+              },
               builder: (context, state) {
                 return state.when(
                   initial: () => const SizedBox.shrink(),
@@ -59,10 +79,13 @@ class _SuccessBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final totalPrice = products.fold<double>(
-      0,
-      (sum, product) => sum + (product.price * product.quantity),
-    );
+    final totalPrice = products
+        .where((product) => product.isFound && product.price != null)
+        .fold<double>(
+          0,
+          (sum, product) => sum + (product.price! * product.quantity),
+        );
+
     return OrderDataTable(products: products, totalPrice: totalPrice);
   }
 }

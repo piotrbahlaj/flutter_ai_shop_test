@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$OrderedProduct {
 
- int get id; String get title; double get price; int get quantity; bool get isFound;
+ int? get id; String get title; double? get price; int get quantity; bool get isFound;
 /// Create a copy of OrderedProduct
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $OrderedProductCopyWith<$Res>  {
   factory $OrderedProductCopyWith(OrderedProduct value, $Res Function(OrderedProduct) _then) = _$OrderedProductCopyWithImpl;
 @useResult
 $Res call({
- int id, String title, double price, int quantity, bool isFound
+ int? id, String title, double? price, int quantity, bool isFound
 });
 
 
@@ -65,12 +65,12 @@ class _$OrderedProductCopyWithImpl<$Res>
 
 /// Create a copy of OrderedProduct
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? id = null,Object? title = null,Object? price = null,Object? quantity = null,Object? isFound = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? title = null,Object? price = freezed,Object? quantity = null,Object? isFound = null,}) {
   return _then(_self.copyWith(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as double?,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int,isFound: null == isFound ? _self.isFound : isFound // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
@@ -157,7 +157,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int id,  String title,  double price,  int quantity,  bool isFound)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String title,  double? price,  int quantity,  bool isFound)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _OrderedProduct() when $default != null:
 return $default(_that.id,_that.title,_that.price,_that.quantity,_that.isFound);case _:
@@ -178,7 +178,7 @@ return $default(_that.id,_that.title,_that.price,_that.quantity,_that.isFound);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int id,  String title,  double price,  int quantity,  bool isFound)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String title,  double? price,  int quantity,  bool isFound)  $default,) {final _that = this;
 switch (_that) {
 case _OrderedProduct():
 return $default(_that.id,_that.title,_that.price,_that.quantity,_that.isFound);case _:
@@ -198,7 +198,7 @@ return $default(_that.id,_that.title,_that.price,_that.quantity,_that.isFound);c
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int id,  String title,  double price,  int quantity,  bool isFound)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String title,  double? price,  int quantity,  bool isFound)?  $default,) {final _that = this;
 switch (_that) {
 case _OrderedProduct() when $default != null:
 return $default(_that.id,_that.title,_that.price,_that.quantity,_that.isFound);case _:
@@ -213,12 +213,12 @@ return $default(_that.id,_that.title,_that.price,_that.quantity,_that.isFound);c
 @JsonSerializable()
 
 class _OrderedProduct extends OrderedProduct {
-  const _OrderedProduct({required this.id, required this.title, required this.price, required this.quantity, required this.isFound}): super._();
+  const _OrderedProduct({this.id, required this.title, this.price, required this.quantity, required this.isFound}): super._();
   factory _OrderedProduct.fromJson(Map<String, dynamic> json) => _$OrderedProductFromJson(json);
 
-@override final  int id;
+@override final  int? id;
 @override final  String title;
-@override final  double price;
+@override final  double? price;
 @override final  int quantity;
 @override final  bool isFound;
 
@@ -255,7 +255,7 @@ abstract mixin class _$OrderedProductCopyWith<$Res> implements $OrderedProductCo
   factory _$OrderedProductCopyWith(_OrderedProduct value, $Res Function(_OrderedProduct) _then) = __$OrderedProductCopyWithImpl;
 @override @useResult
 $Res call({
- int id, String title, double price, int quantity, bool isFound
+ int? id, String title, double? price, int quantity, bool isFound
 });
 
 
@@ -272,12 +272,12 @@ class __$OrderedProductCopyWithImpl<$Res>
 
 /// Create a copy of OrderedProduct
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? id = null,Object? title = null,Object? price = null,Object? quantity = null,Object? isFound = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? title = null,Object? price = freezed,Object? quantity = null,Object? isFound = null,}) {
   return _then(_OrderedProduct(
-id: null == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as int,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
-as String,price: null == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
-as double,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
+id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
+as int?,title: null == title ? _self.title : title // ignore: cast_nullable_to_non_nullable
+as String,price: freezed == price ? _self.price : price // ignore: cast_nullable_to_non_nullable
+as double?,quantity: null == quantity ? _self.quantity : quantity // ignore: cast_nullable_to_non_nullable
 as int,isFound: null == isFound ? _self.isFound : isFound // ignore: cast_nullable_to_non_nullable
 as bool,
   ));
