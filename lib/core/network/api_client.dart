@@ -22,13 +22,13 @@ class ApiClient {
     return dio;
   }
 
-  Dio openAiDio() {
+  Dio geminiDio() {
     return _baseDio()
       ..options = BaseOptions(
-        baseUrl: env.openAiBaseUrl,
+        baseUrl: env.geminiBaseUrl,
         headers: {
-          Constants.headerAuthorization: 'Bearer ${env.apiKey}',
           Constants.headerContentType: Constants.contentTypeJson,
+          Constants.headerAuthorization: env.geminiApiKey,
         },
       );
   }
