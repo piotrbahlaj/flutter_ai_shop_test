@@ -1,4 +1,6 @@
 part of 'order_bloc.dart';
 
-@immutable
-sealed class OrderEvent {}
+@freezed
+abstract class OrderEvent with _$OrderEvent {
+  const factory OrderEvent.submit(String userOrder) = SubmitOrderEvent;
+}

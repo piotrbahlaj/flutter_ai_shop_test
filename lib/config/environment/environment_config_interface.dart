@@ -1,5 +1,5 @@
 abstract interface class EnvironmentConfigInterface {
-  String get openAiBaseUrl;
+  String get geminiBaseUrl;
   String get dummyJsonBaseUrl;
-  String get apiKey;
+  String get geminiApiKey;
 }

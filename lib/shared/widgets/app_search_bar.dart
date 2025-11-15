@@ -18,7 +18,9 @@ class AppSearchBar extends StatelessWidget {
           ),
           filled: true,
         ),
-        onChanged: (query) {},
+        onChanged: (query) {
+          // TODO IMPLEMENT SEARCH FUNCTIONALITY
+        },
       ),
     );
   }

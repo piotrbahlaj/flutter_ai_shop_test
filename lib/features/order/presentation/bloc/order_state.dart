@@ -1,6 +1,10 @@
 part of 'order_bloc.dart';
 
-@immutable
-sealed class OrderState {}
-
-final class OrderInitial extends OrderState {}
+@freezed
+class OrderState with _$OrderState {
+  const factory OrderState.initial() = _Initial;
+  const factory OrderState.loading() = _Loading;
+  const factory OrderState.success(List<OrderedProduct> orderedProducts) =
+      _Success;
+  const factory OrderState.error(String message) = _Error;
+}
