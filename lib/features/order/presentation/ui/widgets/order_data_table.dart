@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ai_shop_test/core/constants/constants.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_colors.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
+import 'package:flutter_ai_shop_test/core/utils/data_column_header.dart';
 import 'package:flutter_ai_shop_test/features/order/data/models/ordered_product/ordered_product_model.dart';
 
 class OrderDataTable extends StatelessWidget {
@@ -23,31 +24,11 @@ class OrderDataTable extends StatelessWidget {
         children: [
           DataTable(
             headingRowColor: WidgetStateProperty.all(AppColors.backgroundGray),
-            columns: const [
-              DataColumn(
-                label: Text(
-                  Constants.dataTableColumnProduct,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  Constants.dataTableColumnPrice,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  Constants.dataTableColumnQuantity,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
-              DataColumn(
-                label: Text(
-                  Constants.dataTableColumnSum,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-              ),
+            columns: [
+              buildDataColumnHeader(Constants.dataTableColumnProduct),
+              buildDataColumnHeader(Constants.dataTableColumnPrice),
+              buildDataColumnHeader(Constants.dataTableColumnQuantity),
+              buildDataColumnHeader(Constants.dataTableColumnSum),
             ],
             rows: products.map((product) {
               final sumPrice = (product.price ?? 0) * product.quantity;
