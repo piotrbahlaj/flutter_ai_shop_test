@@ -7,13 +7,18 @@ import 'package:flutter_ai_shop_test/features/products/data/service/products_ser
 import 'package:flutter_ai_shop_test/features/products/domain/repositories/products_repository.dart';
 
 class ProductsRepositoryImpl implements ProductsRepository {
-  final ProductsService _service;
-  ProductsRepositoryImpl(this._service);
+  final ProductsService _productService;
+  ProductsRepositoryImpl(this._productService);
+  List<Product>? _productsCache;
 
   @override
   Future<Result<List<Product>>> getProducts() async {
+    if (_productsCache != null) {
+      return Result.success(_productsCache!);
+    }
     try {
-      final response = await _service.getProducts();
+      final response = await _productService.getProducts();
+      _productsCache = response.products;
       return Result.success(response.products);
     } on DioException catch (e) {
       return Result.failure(
@@ -23,4 +28,7 @@ class ProductsRepositoryImpl implements ProductsRepository {
       return Result.failure(const UnknownFailure());
     }
   }
+
+  @override
+  List<Product>? get cachedProducts => _productsCache;
 }
