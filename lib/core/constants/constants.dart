@@ -32,4 +32,11 @@ class Constants {
   static const orderHintText = 'Place your order details here...';
   static const orderTitle = 'Your Order';
   static const buttonDefaultHeight = 48.0;
+
+  // Data Table
+  static const dataTableColumnProduct = 'Product';
+  static const dataTableColumnPrice = 'Price';
+  static const dataTableColumnQuantity = 'Quantity';
+  static const dataTableColumnSum = 'Sum';
+  static const dataTableTotalLabel = 'Total';
 }

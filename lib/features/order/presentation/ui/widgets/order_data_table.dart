@@ -1,0 +1,57 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_ai_shop_test/core/constants/constants.dart';
+import 'package:flutter_ai_shop_test/core/theme/app_colors.dart';
+import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
+import 'package:flutter_ai_shop_test/features/order/data/models/ordered_product/ordered_product_model.dart';
+
+class OrderDataTable extends StatelessWidget {
+  const OrderDataTable({
+    super.key,
+    required this.products,
+    required this.totalPrice,
+  });
+
+  final List<OrderedProduct> products;
+  final double totalPrice;
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      scrollDirection: Axis.vertical,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          DataTable(
+            headingRowColor: WidgetStateProperty.all(AppColors.backgroundGray),
+            columns: const [
+              DataColumn(label: Text(Constants.dataTableColumnProduct)),
+              DataColumn(label: Text(Constants.dataTableColumnPrice)),
+              DataColumn(label: Text(Constants.dataTableColumnQuantity)),
+              DataColumn(label: Text(Constants.dataTableColumnSum)),
+            ],
+            rows: products.map((product) {
+              final sumPrice = product.price * product.quantity;
+              return DataRow(
+                cells: [
+                  DataCell(Text(product.title)),
+                  DataCell(Text('\$${product.price.toStringAsFixed(2)}')),
+                  DataCell(Text(product.quantity.toString())),
+                  DataCell(Text('\$${sumPrice.toStringAsFixed(2)}')),
+                ],
+              );
+            }).toList(),
+          ),
+
+          const SizedBox(height: AppSpacing.l),
+          Text(
+            '${Constants.dataTableTotalLabel} \$${totalPrice.toStringAsFixed(2)}',
+            style: Theme.of(
+              context,
+            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
+            textAlign: TextAlign.end,
+          ),
+        ],
+      ),
+    );
+  }
+}
