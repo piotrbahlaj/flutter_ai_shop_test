@@ -1,14 +1,15 @@
 class Constants {
   Constants._();
   // API Client
-  static const headerAuthorization = 'Authorization';
+  static const headerAuthorization = 'x-goog-api-key';
   static const headerContentType = 'Content-Type';
   static const contentTypeJson = 'application/json';
-  static const openAiDio = 'openAiDio';
+  static const geminiDio = 'geminiDio';
   static const dummyJsonDio = 'dummyJsonDio';
 
   // API endpoints
   static const productsEndpoint = '/products?limit=50';
+  static const geminiEndpoint = '/models/gemini-2.5-flash:generateContent';
 
   // Durations
   static const snackbarDuration = 3;
@@ -20,6 +21,7 @@ class Constants {
   static const aiFailure = 'AI request failed';
   static const unknownFailure = 'An unknown error occurred';
   static const noProductsError = 'No products found';
+  static const emptyCatalogError = 'Product catalog is empty.';
 
   // Miscallaneous
   static const retryButtonText = 'Retry';
@@ -27,4 +29,7 @@ class Constants {
   static const iconSizeLarge = 64.0;
   static const products = 'Products';
   static const order = 'Order';
+  static const orderHintText = 'Place your order details here...';
+  static const orderTitle = 'Your Order';
+  static const buttonDefaultHeight = 48.0;
 }

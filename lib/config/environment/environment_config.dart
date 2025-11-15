@@ -3,11 +3,11 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class EnvironmentConfig implements EnvironmentConfigInterface {
   @override
-  String get openAiBaseUrl => dotenv.get('OPENAI_BASE_URL');
+  String get geminiBaseUrl => dotenv.get('GEMINI_BASE_URL');
 
   @override
   String get dummyJsonBaseUrl => dotenv.get('DUMMYJSON_BASE_URL');
 
   @override
-  String get apiKey => dotenv.get('OPENAI_API_KEY');
+  String get geminiApiKey => dotenv.get('GEMINI_API_KEY');
 }
