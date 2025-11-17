@@ -11,7 +11,7 @@ class AppShell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: navigationShell,
+      body: SafeArea(child: navigationShell),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: AppColors.backgroundGray,
         selectedItemColor: AppColors.selectedItem,
