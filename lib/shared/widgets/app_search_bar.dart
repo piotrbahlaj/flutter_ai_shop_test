@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_shop_test/core/constants/constants.dart';
+import 'package:flutter_ai_shop_test/core/theme/app_colors.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
 import 'package:flutter_ai_shop_test/core/utils/search_debouncer.dart';
 import 'package:flutter_ai_shop_test/features/products/presentation/bloc/products_bloc.dart';
@@ -38,8 +39,16 @@ class AppSearchBar extends HookWidget {
                   },
                 )
               : null,
-          border: OutlineInputBorder(
+          focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(AppSpacing.l),
+            borderSide: const BorderSide(
+              color: AppColors.primaryBlack,
+              width: 2.0,
+            ),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(AppSpacing.l),
+            borderSide: BorderSide(color: AppColors.unselectedItem, width: 1.5),
           ),
           filled: true,
         ),
