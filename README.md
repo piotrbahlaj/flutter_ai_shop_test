@@ -39,3 +39,12 @@ flutter run
 ```
 
 ## Screenshots
+<img width="300" alt="Simulator Screenshot - iPhone 17 Pro - 2025-11-17 at 18 31 09" src="https://github.com/user-attachments/assets/89b5e794-e022-4047-9a94-2d40c7a1f9c1" />
+<img width="300" alt="Simulator Screenshot - iPhone 17 Pro - 2025-11-17 at 18 31 00" src="https://github.com/user-attachments/assets/5d31bbec-8172-491e-a38a-a8c914686c7c" />
+<img width="300" alt="Simulator Screenshot - iPhone 17 Pro - 2025-11-17 at 18 26 17" src="https://github.com/user-attachments/assets/853e52b0-8e23-48fb-bbf3-1ff22bc460b6" />
+<img width="300" alt="Simulator Screenshot - iPhone 17 Pro - 2025-11-17 at 18 26 57" src="https://github.com/user-attachments/assets/b1a65888-e356-452a-ba47-62ff2de1b5d1" />
+
+
+
+
+
