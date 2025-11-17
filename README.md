@@ -16,8 +16,6 @@ Works on Android, iOS, Web, macOS, Windows, Linux.
 
 The app uses **Google Gemini API** to parse orders.
 
-### Setup
-
 1. Go to: https://aistudio.google.com/app/apikey
 2. Create a new API key
 3. Create `.env` file in project root:
@@ -36,4 +34,4 @@ flutter pub get
 dart run build_runner build --delete-conflicting-outputs
 flutter run
 
-### Screenshots
+#### Screenshots
