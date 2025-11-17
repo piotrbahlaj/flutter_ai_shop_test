@@ -33,7 +33,8 @@ class _ProductsBody extends StatelessWidget {
       builder: (context, state) {
         return state.when(
           loading: () => const Center(child: AppCircularProgressIndicator()),
-          loaded: (products) => _ProductsList(products: products),
+          loaded: (allProducts, displayedProducts, searchQuery) =>
+              _ProductsList(products: displayedProducts),
           error: (msg) => ErrorBody(
             message: msg,
             onPressed: () {

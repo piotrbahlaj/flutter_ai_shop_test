@@ -30,5 +30,16 @@ class ProductsRepositoryImpl implements ProductsRepository {
   }
 
   @override
+  List<Product> searchProducts(String query) {
+    if (_productsCache == null) return [];
+    if (query.trim().isEmpty) return List.from(_productsCache!);
+
+    final userInput = query.toLowerCase().trim();
+    return _productsCache!.where((product) {
+      return product.title.toLowerCase().contains(userInput);
+    }).toList();
+  }
+
+  @override
   List<Product>? get cachedProducts => _productsCache;
 }

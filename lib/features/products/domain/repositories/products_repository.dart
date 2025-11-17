@@ -3,5 +3,6 @@ import 'package:flutter_ai_shop_test/features/products/data/models/product/produ
 
 abstract class ProductsRepository {
   Future<Result<List<Product>>> getProducts();
+  List<Product> searchProducts(String query);
   List<Product>? get cachedProducts;
 }
