@@ -4,12 +4,19 @@ import 'package:flutter_ai_shop_test/core/extensions/ordered_products_extension.
 import 'package:flutter_ai_shop_test/core/theme/app_colors.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
 import 'package:flutter_ai_shop_test/core/utils/data_column_header.dart';
+import 'package:flutter_ai_shop_test/core/utils/order_result_export.dart';
 import 'package:flutter_ai_shop_test/features/order/data/models/ordered_product/ordered_product_model.dart';
+import 'package:flutter_ai_shop_test/features/order/presentation/ui/widgets/order_button.dart';
 
 class OrderDataTable extends StatelessWidget {
-  const OrderDataTable({super.key, required this.products});
+  const OrderDataTable({
+    super.key,
+    required this.products,
+    required this.userInputController,
+  });
 
   final List<OrderedProduct> products;
+  final TextEditingController userInputController;
 
   @override
   Widget build(BuildContext context) {
@@ -62,14 +69,36 @@ class OrderDataTable extends StatelessWidget {
             }).toList(),
           ),
 
-          const SizedBox(height: AppSpacing.l),
-          Text(
-            '${Constants.dataTableTotalLabel} \$${products.totalPrice.toStringAsFixed(2)}',
-            style: Theme.of(
-              context,
-            ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
-            textAlign: TextAlign.end,
+          Padding(
+            padding: AppSpacing.padH(AppSpacing.l),
+            child: Column(
+              spacing: AppSpacing.l,
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  '${Constants.dataTableTotalLabel} \$${products.totalPrice.toStringAsFixed(2)}',
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.end,
+                ),
+                SizedBox(
+                  width: Constants.buttonDefaultWidth,
+                  child: OrderButton(
+                    onPressed: () async {
+                      await OrderResultExport.exportToJson(
+                        products: products,
+                        userInput: userInputController.text.trim(),
+                        context: context,
+                      );
+                    },
+                    title: Constants.exportButtonTitle,
+                  ),
+                ),
+              ],
+            ),
           ),
+          const SizedBox(height: AppSpacing.l),
         ],
       ),
     );

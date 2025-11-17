@@ -29,7 +29,10 @@ class OrderView extends HookWidget {
         children: [
           const OrderTitle(),
           OrderTextField(controller: controller),
-          OrderButton(onPressed: () => _submitOrder(context, controller)),
+          OrderButton(
+            onPressed: () => _submitOrder(context, controller),
+            title: Constants.order,
+          ),
           Expanded(
             child: BlocConsumer<OrderBloc, OrderState>(
               listener: (context, state) {
@@ -42,7 +45,10 @@ class OrderView extends HookWidget {
                 initial: () => const SizedBox.shrink(),
                 loading: () =>
                     const Center(child: AppCircularProgressIndicator()),
-                success: (products) => OrderDataTable(products: products),
+                success: (products) => OrderDataTable(
+                  products: products,
+                  userInputController: controller,
+                ),
                 error: (msg) => ErrorBody(
                   message: msg,
                   onPressed: () => _submitOrder(context, controller),
@@ -54,21 +60,21 @@ class OrderView extends HookWidget {
       ),
     );
   }
+}
 
-  void _submitOrder(BuildContext context, TextEditingController controller) {
-    final input = controller.text.trim();
-    if (input.isEmpty) {
-      context.showSnackbar(message: Constants.emptyOrderAlert);
-      return;
-    }
-    context.read<OrderBloc>().add(OrderEvent.submit(input));
+void _submitOrder(BuildContext context, TextEditingController controller) {
+  final input = controller.text.trim();
+  if (input.isEmpty) {
+    context.showSnackbar(message: Constants.emptyOrderAlert);
+    return;
   }
+  context.read<OrderBloc>().add(OrderEvent.submit(input));
+}
 
-  void _showNotFoundAlert(BuildContext context, List<OrderedProduct> products) {
-    if (products.notFound.isNotEmpty) {
-      context.showSnackbar(
-        message: '${Constants.notFoundItemAlert} ${products.notFoundTitles}',
-      );
-    }
+void _showNotFoundAlert(BuildContext context, List<OrderedProduct> products) {
+  if (products.notFound.isNotEmpty) {
+    context.showSnackbar(
+      message: '${Constants.notFoundItemAlert} ${products.notFoundTitles}',
+    );
   }
 }
