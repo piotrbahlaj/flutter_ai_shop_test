@@ -22,9 +22,9 @@ The app uses **Google Gemini API** to parse orders.
 2. Create a new API key
 3. Create `.env` file in project root:
    ```env
-    GEMINI_API_KEY = `your_gemini_api_key`
-    DUMMYJSON_BASE_URL = `https://dummyjson.com`
-    GEMINI_BASE_URL = `https://generativelanguage.googleapis.com/v1beta`
+    GEMINI_API_KEY = your_gemini_api_key
+    DUMMYJSON_BASE_URL = https://dummyjson.com
+    GEMINI_BASE_URL = https://generativelanguage.googleapis.com/v1beta
    ```
    Replace `your_gemini_api_key` with your actual Gemini API key.
 
