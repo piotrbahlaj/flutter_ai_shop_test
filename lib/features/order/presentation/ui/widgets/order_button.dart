@@ -5,7 +5,8 @@ import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
 
 class OrderButton extends StatelessWidget {
   final void Function() onPressed;
-  const OrderButton({super.key, required this.onPressed});
+  final String title;
+  const OrderButton({super.key, required this.onPressed, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class OrderButton extends StatelessWidget {
         elevation: 6,
       ),
       child: Text(
-        Constants.order,
+        title,
         style: Theme.of(context).textTheme.titleMedium?.copyWith(
           color: AppColors.primaryBlack,
           fontWeight: FontWeight.bold,

@@ -36,6 +36,8 @@ class Constants {
   static const orderHintText = 'Place your order details here...';
   static const orderTitle = 'Your Order';
   static const buttonDefaultHeight = 48.0;
+  static const buttonDefaultWidth = 100.00;
+  static const androidDownloadsDirectory = '/storage/emulated/0/Download';
 
   // Data Table
   static const dataTableColumnProduct = 'Product';
@@ -43,4 +45,9 @@ class Constants {
   static const dataTableColumnQuantity = 'Quantity';
   static const dataTableColumnSum = 'Sum';
   static const dataTableTotalLabel = 'Total';
+  static const exportButtonTitle = 'Export';
+  static const orderExportSubject = 'My order export';
+  static const orderExportSuccessMessage = 'Order data exported';
+  static const orderExportCopiedMessage = 'JSON copied to clipboard!';
+  static const orderExportSaveResult = 'Exported successfully!\nSaved to: ';
 }
