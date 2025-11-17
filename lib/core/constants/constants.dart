@@ -14,6 +14,7 @@ class Constants {
   // Durations
   static const snackbarDuration = 5;
   static const defaultConnectionTimeout = 10;
+  static const debouncerTimer = 400;
 
   // Failure messages
   static const networkFailure = 'No internet connection';

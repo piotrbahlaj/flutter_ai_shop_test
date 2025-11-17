@@ -9,6 +9,7 @@ import 'package:flutter_ai_shop_test/features/products/data/repositories/product
 import 'package:flutter_ai_shop_test/features/products/data/service/products_service.dart';
 import 'package:flutter_ai_shop_test/features/products/domain/repositories/products_repository.dart';
 import 'package:flutter_ai_shop_test/features/products/domain/usecases/get_products_usecases.dart';
+import 'package:flutter_ai_shop_test/features/products/domain/usecases/search_products_usecase.dart';
 import 'package:flutter_ai_shop_test/features/products/presentation/bloc/products_bloc.dart';
 import 'package:flutter_ai_shop_test/shared/usecases/get_cached_products.dart';
 import 'package:get_it/get_it.dart';
@@ -52,10 +53,16 @@ void setupDependencies() {
   getIt.registerLazySingleton<GetCachedProductsUseCase>(
     () => GetCachedProductsUseCase(getIt<ProductsRepository>()),
   );
+  getIt.registerLazySingleton<SearchProductsUsecase>(
+    () => SearchProductsUsecase(getIt<ProductsRepository>()),
+  );
 
   //Blocs
   getIt.registerLazySingleton<ProductsBloc>(
-    () => ProductsBloc(getIt<GetProductsUseCase>()),
+    () => ProductsBloc(
+      getIt<GetProductsUseCase>(),
+      getIt<SearchProductsUsecase>(),
+    ),
   );
   getIt.registerLazySingleton<OrderBloc>(
     () => OrderBloc(
