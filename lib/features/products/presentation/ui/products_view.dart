@@ -3,6 +3,7 @@ import 'package:flutter_ai_shop_test/core/constants/constants.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
 import 'package:flutter_ai_shop_test/features/products/data/models/product/product_model.dart';
 import 'package:flutter_ai_shop_test/features/products/presentation/ui/widgets/product_card.dart';
+import 'package:flutter_ai_shop_test/shared/widgets/app_circular_progress_indicator.dart';
 import 'package:flutter_ai_shop_test/shared/widgets/app_search_bar.dart';
 import 'package:flutter_ai_shop_test/shared/widgets/error_body.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,7 +32,7 @@ class _ProductsBody extends StatelessWidget {
     return BlocBuilder<ProductsBloc, ProductsState>(
       builder: (context, state) {
         return state.when(
-          loading: () => const Center(child: CircularProgressIndicator()),
+          loading: () => const Center(child: AppCircularProgressIndicator()),
           loaded: (products) => _ProductsList(products: products),
           error: (msg) => ErrorBody(
             message: msg,
