@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ai_shop_test/core/constants/constants.dart';
+import 'package:flutter_ai_shop_test/core/extensions/ordered_products_extension.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_colors.dart';
 import 'package:flutter_ai_shop_test/core/theme/app_spacing.dart';
 import 'package:flutter_ai_shop_test/core/utils/data_column_header.dart';
 import 'package:flutter_ai_shop_test/features/order/data/models/ordered_product/ordered_product_model.dart';
 
 class OrderDataTable extends StatelessWidget {
-  const OrderDataTable({
-    super.key,
-    required this.products,
-    required this.totalPrice,
-  });
+  const OrderDataTable({super.key, required this.products});
 
   final List<OrderedProduct> products;
-  final double totalPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +27,9 @@ class OrderDataTable extends StatelessWidget {
               buildDataColumnHeader(Constants.dataTableColumnSum),
             ],
             rows: products.map((product) {
-              final sumPrice = (product.price ?? 0) * product.quantity;
+              final subtotal = product.isFound
+                  ? (product.price! * product.quantity)
+                  : 0.0;
               return DataRow(
                 cells: [
                   DataCell(
@@ -55,7 +53,7 @@ class OrderDataTable extends StatelessWidget {
                   DataCell(
                     Text(
                       product.isFound
-                          ? '\$${sumPrice.toStringAsFixed(2)}'
+                          ? '\$${subtotal.toStringAsFixed(2)}'
                           : '-',
                     ),
                   ),
@@ -66,7 +64,7 @@ class OrderDataTable extends StatelessWidget {
 
           const SizedBox(height: AppSpacing.l),
           Text(
-            '${Constants.dataTableTotalLabel} \$${totalPrice.toStringAsFixed(2)}',
+            '${Constants.dataTableTotalLabel} \$${products.totalPrice.toStringAsFixed(2)}',
             style: Theme.of(
               context,
             ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.bold),
